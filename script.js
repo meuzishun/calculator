@@ -11,20 +11,26 @@ function updateDisplay() {
 
 function clearDisplay() {
     displayValue = '';
-    updateDisplay();
 }
 
 function appendDisplay(val) {
+    if (val === '.' && displayValue.includes('.')) return;
+    if (val === '0' && displayValue === '0') return;
+    if (val !== '0' && displayValue === '0') clearDisplay();
     displayValue += val;
-    updateDisplay();
 }
 
 function handleNumberBtn(evt) {
     const val = evt.target.innerText;
     appendDisplay(val);
+    updateDisplay();
 }
 
-numberBtns.forEach(btn => btn.addEventListener('click', handleNumberBtn));
+function handleClearBtn() {
+    clearDisplay();
+    displayValue = '0';
+    updateDisplay();
+}
 
 function add(num1, num2) {
     return num1 + num2;
@@ -45,3 +51,6 @@ function divide(num1, num2) {
 function operate(operator, num1, num2) {
     return operator(num1, num2);
 }
+
+numberBtns.forEach(btn => btn.addEventListener('click', handleNumberBtn));
+clearBtn.addEventListener('click', handleClearBtn);
