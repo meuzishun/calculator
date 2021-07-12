@@ -3,15 +3,17 @@ const numberBtns = [...document.querySelectorAll('.number-btn')];
 const operatorBtns = [...document.querySelectorAll('.operator-btn')];
 const clearBtn = document.querySelector('.clear-btn');
 
-let inputValue = '';
+let queuedValue = '';
 let operand1 = null;
 let operand2 = null;
 let operation = null;
 let result = null;
 
+// For testing
 function printDetails() {
     console.table({
-        inputValue,
+        queuedValue,
+        displayedValue: display.textContent,
         operand1,
         operand2,
         operation,
@@ -20,60 +22,47 @@ function printDetails() {
 }
 
 function updateDisplay() {
-    display.textContent = `${inputValue}`;
+    display.textContent = queuedValue;
 }
 
-function retrieveDisplay() {
-    inputValue = display.textContent;
-    console.log(inputValue);
+function appendDisplay() {
+    display.textContent += queuedValue;
 }
 
-function appendDisplay(val) {
-    if (val === '.' && inputValue.includes('.')) return;
-    if (val === '0' && inputValue === '0') return;
-    if (val !== '0' && inputValue === '0') inputValue = '';
-    inputValue += val;
+function appendQueuedValue(val) {
+    queuedValue += val;
 }
 
-function handleNumberBtn(evt) {
-    const val = evt.target.innerText;
-    appendDisplay(val);
-    updateDisplay();
-    printDetails();
+function getDisplayValue() {
+    return +display.textContent;
 }
 
-function handleClearBtn() {
-    operand1 = null;
-    operand2 = null;
-    operation = null;
-    result = null;
-    inputValue = '0';
-    updateDisplay();
-    printDetails();
+function checkDisplayIsZero() {
+    return display.textContent === '0';
 }
 
-function handleOperatorBtn(evt) {
-    const val = evt.target.textContent;
-    if (val !== '=') {
-        operand1 = result || +inputValue;
-        operation = operations[val];
-        inputValue = '';
-        printDetails();
+function checkDisplayHasFloat() {
+    return display.textContent.includes('.');
+}
+
+function processDotInput(val) {
+    if (checkDisplayHasFloat()) return;
+    appendQueuedValue(val);
+}
+
+function processZeroInput(val) {
+    if (checkDisplayIsZero()) return;
+    appendQueuedValue(val);
+}
+
+function processNumInput(val) {
+    if (checkDisplayIsZero()) {
+        queuedValue = val;
         return;
     }
-    if (val === '=') {
-        operand2 = +inputValue;
-        result = operate(operation, operand1, operand2);
-        inputValue = result;
-        updateDisplay();
-        inputValue = '';
-        printDetails();
-        // operand1 = null;
-        // operand2 = null;
-        // operation = null;
-        return;
-    }
+    appendQueuedValue(val);
 }
+
 
 const operations = {
     '+': function add(num1, num2) {
@@ -93,6 +82,69 @@ const operations = {
 function operate(operator, num1, num2) {
     return operator(num1, num2);
 }
+
+function handleNumberBtn(evt) {
+    const val = evt.target.innerText;
+
+    if (operation && operand1 && operand2) {
+        queuedValue = '0';
+        updateDisplay();
+        operand1 = null;
+        operand2 = null;
+        operation = null;
+        result = null;
+    }
+
+    // if (operation && operand1) {
+    //     display.textContent = '';
+    // }
+
+    if (val === '.') processDotInput(val);
+    if (val === '0') processZeroInput(val);
+    if (val !== '.' && val !== '0') processNumInput(val);
+    updateDisplay();
+    printDetails();
+}
+
+function handleOperator(val) {
+    queuedValue = '';
+    operand1 = getDisplayValue();
+    operand2 = null;
+    operation = operations[val];
+    printDetails();
+    return;
+}
+
+function handleEquals() {
+    if (operand2) {
+        operand1 = getDisplayValue();
+    } else {
+        operand2 = getDisplayValue();
+    }
+    result = operate(operation, operand1, operand2);
+    queuedValue = result;
+    updateDisplay();
+    printDetails();
+    return;
+}
+
+function handleClearBtn() {
+    operand1 = null;
+    operand2 = null;
+    operation = null;
+    result = null;
+    queuedValue = '0';
+    updateDisplay();
+    printDetails();
+}
+
+function handleOperatorBtn(evt) {
+    const val = evt.target.textContent;
+    if (val !== '=') handleOperator(val);
+    if (val === '=') handleEquals();
+}
+
+
 
 numberBtns.forEach(btn => btn.addEventListener('click', handleNumberBtn));
 clearBtn.addEventListener('click', handleClearBtn);
