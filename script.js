@@ -78,6 +78,7 @@ const operations = {
 }
 
 function operate(operator, num1, num2) {
+    if (operator === '÷' && num2 === '0') return 'error';
     return operator(num1, num2);
 }
 
@@ -107,6 +108,18 @@ function handleOperatorBtn(evt) {
 }
 
 function handleOperator(val) {
+    if (operation && operand1) {
+        operand2 = getDisplayValue();
+        result = operate(operation, operand1, operand2);
+        queuedValue = result;
+        updateDisplay();
+        operand1 = getDisplayValue();
+        operation = operations[val];
+        operand2 = null;
+        queuedValue = '0';
+        printDetails();
+        return;
+    }
     operand1 = getDisplayValue();
     if (result) {
         queuedValue = '0';
@@ -145,3 +158,8 @@ function handleClearBtn() {
 numberBtns.forEach(btn => btn.addEventListener('click', handleNumberBtn));
 clearBtn.addEventListener('click', handleClearBtn);
 operatorBtns.forEach(btn => btn.addEventListener('click', handleOperatorBtn));
+
+
+
+// When you click a number, it shows up in the display
+// When you click an operator, it is stored in the code UNLESS

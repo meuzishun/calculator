@@ -8,7 +8,7 @@
 
 body {
     .container {
-        border: 1px dashed grey;
+        // border: 1px dashed grey;
         width: 30rem;
         height: 40rem;
         margin: 30px auto;
@@ -32,10 +32,15 @@ body {
             grid-area: display;
             display: flex;
             flex-direction: row;
-            align-items: center;
+            align-items: flex-end;
             justify-content: right;
+            padding: 0.3rem 1rem;
+            background-color: rgb(80, 80, 80);
 
-            .display {}
+            .display {
+                font-size: 4rem;
+                color: rgb(230, 230, 230);
+            }
         }
         
         .number-btns-container {
@@ -49,7 +54,7 @@ body {
             'zero zero dot';
 
             .number-btn {
-                // grid-area: number;
+                background-color: rgb(232, 232, 232);
             }
 
             &>:nth-child(10) {
@@ -59,11 +64,17 @@ body {
 
         .clear-btn {
             grid-area: clear;
+            background-color: rgb(218, 218, 218);
         }
         
         .operator-btns-container {
             grid-area: operators;
             display: grid;
+
+            .operator-btn {
+                background-color: rgb(255, 153, 64);
+                color: white;
+            }
         }
         
     }
