@@ -25,10 +25,6 @@ function updateDisplay() {
     display.textContent = queuedValue;
 }
 
-// function appendDisplay() {
-//     display.textContent += queuedValue;
-// }
-
 function appendQueuedValue(val) {
     queuedValue += val;
 }
@@ -37,32 +33,34 @@ function getDisplayValue() {
     return +display.textContent;
 }
 
-function checkDisplayIsZero() {
-    return display.textContent === '0';
+function checkQueuedValueIsZero() {
+    return queuedValue === '0';
 }
 
-function checkDisplayHasFloat() {
-    return display.textContent.includes('.');
+function checkQueuedValueHasFloat() {
+    return queuedValue.includes('.');
 }
 
 function processDotInput(val) {
-    if (checkDisplayHasFloat()) return;
+    if (checkQueuedValueHasFloat()) return;
     appendQueuedValue(val);
+    updateDisplay();
 }
 
 function processZeroInput(val) {
-    if (checkDisplayIsZero()) return;
+    if (checkQueuedValueIsZero()) return;
     appendQueuedValue(val);
+    updateDisplay();
 }
 
 function processNumInput(val) {
-    if (checkDisplayIsZero()) {
+    if (checkQueuedValueIsZero()) {
         queuedValue = val;
-        return;
+    } else {
+        appendQueuedValue(val);
     }
-    appendQueuedValue(val);
+    updateDisplay();
 }
-
 
 const operations = {
     '+': function add(num1, num2) {
@@ -94,10 +92,6 @@ function handleNumberBtn(evt) {
         operation = null;
         result = null;
     }
-
-    // if (operation && operand1) {
-    //     display.textContent = '';
-    // }
 
     if (val === '.') processDotInput(val);
     if (val === '0') processZeroInput(val);
