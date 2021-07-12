@@ -9,7 +9,7 @@ let operand2 = null;
 let operation = null;
 let result = null;
 
-// For testing
+// For testing purposes
 function printDetails() {
     console.table({
         queuedValue,
@@ -25,9 +25,9 @@ function updateDisplay() {
     display.textContent = queuedValue;
 }
 
-function appendDisplay() {
-    display.textContent += queuedValue;
-}
+// function appendDisplay() {
+//     display.textContent += queuedValue;
+// }
 
 function appendQueuedValue(val) {
     queuedValue += val;
@@ -106,9 +106,19 @@ function handleNumberBtn(evt) {
     printDetails();
 }
 
+function handleOperatorBtn(evt) {
+    const val = evt.target.textContent;
+    if (val !== '=') handleOperator(val);
+    if (val === '=') handleEquals();
+}
+
 function handleOperator(val) {
-    queuedValue = '';
     operand1 = getDisplayValue();
+    if (result) {
+        queuedValue = '0';
+    } else {
+        queuedValue = '';
+    }
     operand2 = null;
     operation = operations[val];
     printDetails();
@@ -137,14 +147,6 @@ function handleClearBtn() {
     updateDisplay();
     printDetails();
 }
-
-function handleOperatorBtn(evt) {
-    const val = evt.target.textContent;
-    if (val !== '=') handleOperator(val);
-    if (val === '=') handleEquals();
-}
-
-
 
 numberBtns.forEach(btn => btn.addEventListener('click', handleNumberBtn));
 clearBtn.addEventListener('click', handleClearBtn);
