@@ -51,7 +51,7 @@ function operate(operator, num1, num2) {
 }
 
 function validateResult(result) {
-    if (result === 'Infinity') {
+    if (result === 'Infinity' || isNaN(result)) {
         return 'Error';
     } else {
         return result;
@@ -309,8 +309,9 @@ function handleClearBtn() {
 }
 
 function handlePercentageBtn() {
-    let displayedValue = +display.textContent;
-    queuedValue = `${displayedValue * 0.01}`;
+    const displayedValue = +display.textContent;
+    const result = displayedValue * 0.01;
+    queuedValue = `${validateResult(result)}`;
     updateDisplay();
     printDetails();
 }
