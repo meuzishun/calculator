@@ -149,7 +149,7 @@ function handleOperatorBtn(evt) {
 
 function handleMiscBtn(evt) {
     const val = evt.target.textContent;
-    if (val === 'C') handleClearBtn();
+    if (val === 'AC') handleClearBtn();
 }
 
 function handleOperator(val) {
