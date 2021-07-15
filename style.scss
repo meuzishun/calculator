@@ -18,7 +18,7 @@ body {
         grid-template-rows: auto;
         grid-template-areas:
             'display display display display'
-            'clear clear clear operators'
+            'misc misc misc operators'
             'numbers numbers numbers operators'
             'numbers numbers numbers operators'
             'numbers numbers numbers operators'
@@ -62,9 +62,20 @@ body {
             }
         }
 
+        .misc-btns-container {
+            grid-area: misc;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: 1fr;
+
+            .misc-btn {
+                background-color: rgb(218, 218, 218);
+            }
+        }
+
         .clear-btn {
-            grid-area: clear;
-            background-color: rgb(218, 218, 218);
+            // grid-area: clear;
+            // background-color: rgb(218, 218, 218);
         }
         
         .operator-btns-container {
