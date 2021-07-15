@@ -147,11 +147,6 @@ function handleOperatorBtn(evt) {
     if (val === '=') handleEquals();
 }
 
-function handleMiscBtn(evt) {
-    const val = evt.target.textContent;
-    if (val === 'AC') handleClearBtn();
-}
-
 function handleOperator(val) {
     if (queuedValue === null &&
         display.textContent === null &&
@@ -300,10 +295,23 @@ function handleEquals() {
     }
 }
 
+function handleMiscBtn(evt) {
+    const val = evt.target.textContent;
+    if (val === 'AC') handleClearBtn();
+    if (val === '%') handlePercentageBtn();
+}
+
 function handleClearBtn() {
     queuedValue = '0';
     updateDisplay();
     resetStatus();
+    printDetails();
+}
+
+function handlePercentageBtn() {
+    let displayedValue = +display.textContent;
+    queuedValue = `${displayedValue * 0.01}`;
+    updateDisplay();
     printDetails();
 }
 
