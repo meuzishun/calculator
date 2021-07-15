@@ -121,131 +121,13 @@ function validateOperation() {}
 function handleNumberBtn(evt) {
     const val = evt.target.innerText;
 
-    // if (queuedValue === null &&
-    //     display.textContent === null &&
-    //     operand1 === null &&
-    //     operation === null &&
-    //     operand2 === null) {
-    //         // take the input and update display
-    //         if (val === '.') {
-    //             processDotInput(val);
-    //             return;
-    //         }
-    //         if (val === '0') {
-    //             processZeroInput(val);
-    //             return;
-    //         }
-    //         processNumInput(val);
-    //         printDetails();
-    //         return;
-    // }
-
-    // if (queuedValue === null &&
-    //     display.textContent !== null &&
-    //     operand1 === null &&
-    //     operation === null &&
-    //     operand2 === null) {
-    //         // take the input and update display
-    //         if (val === '.') {
-    //             processDotInput(val);
-    //             return;
-    //         }
-    //         if (val === '0') {
-    //             processZeroInput(val);
-    //             return;
-    //         }
-    //         processNumInput(val);
-    //         printDetails();
-    //         return;
-    //     }
-        
-    // if (queuedValue !== null &&
-    //     display.textContent !== null &&
-    //     operand1 === null &&
-    //     operation === null &&
-    //     operand2 === null) {
-    //         // take the input and update display
-    //         if (val === '.') {
-    //             processDotInput(val);
-    //             return;
-    //         }
-    //         if (val === '0') {
-    //             processZeroInput(val);
-    //             return;
-    //         }
-    //         processNumInput(val);
-    //         printDetails();
-    //         return;
-    // }
-        
-    // if (queuedValue !== null &&
-    //     display.textContent !== null &&
-    //     operand1 !== null &&
-    //     operation !== null &&
-    //     operand2 === null) {
-    //         // take the input and update display
-    //         if (val === '.') {
-    //             processDotInput(val);
-    //             return;
-    //         }
-    //         if (val === '0') {
-    //             processZeroInput(val);
-    //             return;
-    //         }
-    //         processNumInput(val);
-    //         printDetails();
-    //         return;
-    // }
-
-    // if (queuedValue === null &&
-    //     display.textContent !== null &&
-    //     operand1 !== null &&
-    //     operation !== null &&
-    //     operand2 === null) {
-    //         // take the input and update display
-    //         if (val === '.') {
-    //             processDotInput(val);
-    //             return;
-    //         }
-    //         if (val === '0') {
-    //             processZeroInput(val);
-    //             return;
-    //         }
-    //         processNumInput(val);
-    //         printDetails();
-    //         return;
-    // }
-        
-    // if (queuedValue === null &&
-    //     display.textContent !== null &&
-    //     operand1 !== null &&
-    //     operation !== null &&
-    //     operand2 !== null) {
-    //         // clear the other data
-    //         resetStatus();
-    //         // take the input and update display
-    //         if (val === '.') {
-    //             processDotInput(val);
-    //             return;
-    //         }
-    //         if (val === '0') {
-    //             processZeroInput(val);
-    //             return;
-    //         }
-    //         processNumInput(val);
-    //         printDetails();
-    //         return;
-    // }
-
     if (queuedValue === null &&
         display.textContent !== null &&
         operand1 !== null &&
         operation !== null &&
         operand2 !== null) {
-            // clear the other data
             resetStatus();
-        }
-            // take the input and update display
+    }
     if (val === '.') {
         processDotInput(val);
         return;
@@ -257,8 +139,6 @@ function handleNumberBtn(evt) {
     processNumInput(val);
     printDetails();
     return;
-
-    
 }
 
 function handleOperatorBtn(evt) {
@@ -346,7 +226,6 @@ function handleOperator(val) {
 }
 
 function handleEquals() {
-
     if (queuedValue === null &&
         display.textContent === null &&
         operand1 === null &&
@@ -426,18 +305,3 @@ function handleClearBtn() {
 numberBtns.forEach(btn => btn.addEventListener('click', handleNumberBtn));
 operatorBtns.forEach(btn => btn.addEventListener('click', handleOperatorBtn));
 clearBtn.addEventListener('click', handleClearBtn);
-
-
-
-// When you click a number, it shows up in the display
-// When you click an operator, it is stored in the code UNLESS
-
-function testingDec(val) {
-    let dotPosition = val.indexOf('.');
-    let lastPosition = val.length - 1;
-    let numberOfDec = 11 - dotPosition;
-    // console.log(numberOfDec);
-}
-
-testingDec('23.455645678');
-testingDec('24443.455666');
