@@ -299,6 +299,7 @@ function handleMiscBtn(evt) {
     const val = evt.target.textContent;
     if (val === 'AC') handleClearBtn();
     if (val === '%') handlePercentageBtn();
+    if (val === '+/-') handleSignBtn();
 }
 
 function handleClearBtn() {
@@ -311,6 +312,15 @@ function handleClearBtn() {
 function handlePercentageBtn() {
     const displayedValue = +display.textContent;
     const result = displayedValue * 0.01;
+    queuedValue = `${validateResult(result)}`;
+    updateDisplay();
+    queuedValue = null;
+    printDetails();
+}
+
+function handleSignBtn() {
+    const displayedValue = +display.textContent;
+    const result = displayedValue * -1;
     queuedValue = `${validateResult(result)}`;
     updateDisplay();
     printDetails();
