@@ -1,7 +1,7 @@
 const display = document.querySelector('.display');
 const numberBtns = [...document.querySelectorAll('.number-btn')];
 const operatorBtns = [...document.querySelectorAll('.operator-btn')];
-const clearBtn = document.querySelector('.clear-btn');
+const miscBtns = [...document.querySelectorAll('.misc-btn')];
 
 // Calculator status
 let queuedValue = null;
@@ -145,6 +145,11 @@ function handleOperatorBtn(evt) {
     const val = evt.target.textContent;
     if (val !== '=') handleOperator(val);
     if (val === '=') handleEquals();
+}
+
+function handleMiscBtn(evt) {
+    const val = evt.target.textContent;
+    if (val === 'C') handleClearBtn();
 }
 
 function handleOperator(val) {
@@ -304,4 +309,4 @@ function handleClearBtn() {
 
 numberBtns.forEach(btn => btn.addEventListener('click', handleNumberBtn));
 operatorBtns.forEach(btn => btn.addEventListener('click', handleOperatorBtn));
-clearBtn.addEventListener('click', handleClearBtn);
+miscBtns.forEach(btn => btn.addEventListener('click', handleMiscBtn));
