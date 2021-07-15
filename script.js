@@ -63,7 +63,8 @@ function validateQueuedValue() {
         let dotPosition = queuedValue.indexOf('.');
         if (dotPosition > -1) {
             let value = +queuedValue;
-            return value.toFixed(11 - dotPosition);
+            let str = value.toFixed(11 - dotPosition);
+            return `${Number(str)}`;
         } else {
             return 'Too large';
         }
