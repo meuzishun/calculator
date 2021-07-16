@@ -2,6 +2,7 @@ const display = document.querySelector('.display');
 const numberBtns = [...document.querySelectorAll('.number-btn')];
 const operatorBtns = [...document.querySelectorAll('.operator-btn')];
 const miscBtns = [...document.querySelectorAll('.misc-btn')];
+const clearBtn = document.querySelector('#clear-btn');
 
 // Calculator status
 let queuedValue = null;
@@ -120,7 +121,8 @@ function validateOperation() {}
 
 function handleNumberBtn(evt) {
     const val = evt.target.innerText;
-
+    // change clear button textContent to 'C'
+    clearBtn.textContent = 'C';
     if (queuedValue === null &&
         display.textContent !== null &&
         operand1 !== null &&
@@ -242,6 +244,18 @@ function handleEquals() {
             printDetails();
             return;
     }
+
+    if (queuedValue === null &&
+        operand1 === null &&
+        operation === null &&
+        operand2 === null &&
+        result !== null) {
+            queuedValue = result;
+            updateDisplay();
+            queuedValue = null;
+            result = null;
+            printDetails();
+    }
 }
 
 function handleMiscBtn(evt) {
@@ -259,6 +273,25 @@ function handleClearBtn() {
     printDetails();
 }
 
+function handleBackspaceBtn() {
+    // if there is a queued value and a displayed value, change both
+    if (queuedValue !== null && display.textContent !== null) {
+        queuedValue = null;
+        display.textContent = '0';
+    } else if (result !== null) {
+        queuedValue = null;
+        display.textContent = '0';
+        operation = null;
+        operand1 = null;
+        operand2 = null;
+    } else if (operation !== null) { // if there is a operation, remove it
+        operation = null;
+    }
+    // return the textContent of the clear button to AC
+    clearBtn.textContent = 'AC';
+    printDetails();
+}
+
 function handlePercentageBtn() {
     const displayedValue = +display.textContent;
     const result = displayedValue * 0.01;
@@ -269,11 +302,13 @@ function handlePercentageBtn() {
 }
 
 function handleSignBtn() {
-    const displayedValue = +display.textContent;
-    const result = displayedValue * -1;
-    queuedValue = `${validateResult(result)}`;
-    updateDisplay();
-    printDetails();
+    if (display.textContent !== '0') {
+        const displayedValue = +display.textContent;
+        const result = displayedValue * -1;
+        queuedValue = `${validateResult(result)}`;
+        updateDisplay();
+        printDetails();
+    }
 }
 
 numberBtns.forEach(btn => btn.addEventListener('click', handleNumberBtn));
