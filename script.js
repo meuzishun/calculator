@@ -215,46 +215,6 @@ function handleOperator(val) {
 }
 
 function handleEquals() {
-    // if (queuedValue === null &&
-    //     display.textContent === null &&
-    //     operand1 === null &&
-    //     operation === null &&
-    //     operand2 === null) {
-    //         return;
-    // }
-
-    // if (queuedValue === null &&
-    //     display.textContent !== null &&
-    //     operand1 === null &&
-    //     operation === null &&
-    //     operand2 === null) {
-    //         return;
-    // }
-    
-    // if (queuedValue !== null &&
-    //     display.textContent !== null &&
-    //     operand1 === null &&
-    //     operation === null &&
-    //     operand2 === null) {
-    //         return;
-    // }
-    
-    // if (queuedValue !== null &&
-    //     display.textContent !== null &&
-    //     operand1 !== null &&
-    //     operation === null &&
-    //     operand2 === null) {
-    //         return;
-    // }
-
-    // if (queuedValue === null &&
-    //     display.textContent !== null &&
-    //     operand1 !== null &&
-    //     operation !== null &&
-    //     operand2 === null) {
-    //         return;
-    // }
-
     if (queuedValue !== null &&
         display.textContent !== null &&
         operand1 !== null &&
