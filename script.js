@@ -247,6 +247,7 @@ function handleEquals() {
 function handleMiscBtn(evt) {
     const val = evt.target.textContent;
     if (val === 'AC') handleClearBtn();
+    if (val === 'C') handleBackspaceBtn();
     if (val === '%') handlePercentageBtn();
     if (val === '+/-') handleSignBtn();
 }
