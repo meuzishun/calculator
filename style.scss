@@ -1,87 +1,80 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-size: 16px;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-    .container {
-        // border: 1px dashed grey;
-        width: 30rem;
-        height: 40rem;
-        margin: 30px auto;
+	.container {
+		// border: 1px dashed grey;
+		width: 30rem;
+		height: 40rem;
+		margin: 30px auto;
 
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: auto;
-        grid-template-areas:
-            'display display display display'
-            'misc misc misc operators'
-            'numbers numbers numbers operators'
-            'numbers numbers numbers operators'
-            'numbers numbers numbers operators'
-            'numbers numbers numbers operators';
-        
-        p, button {
-            font-size: 3rem;
-        }
-        
-        .display-container {
-            grid-area: display;
-            display: flex;
-            flex-direction: row;
-            align-items: flex-end;
-            justify-content: flex-end;
-            padding: 0.3rem 1rem;
-            background-color: rgb(80, 80, 80);
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: auto;
+		grid-template-areas: 'display display display display' 'misc misc misc operators'
+			'numbers numbers numbers operators' 'numbers numbers numbers operators' 'numbers numbers numbers operators'
+			'numbers numbers numbers operators';
 
-            .display {
-                font-size: 4rem;
-                color: rgb(230, 230, 230);
-            }
-        }
-        
-        .number-btns-container {
-            grid-area: numbers;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(4, 1fr);
-            grid-template-areas: 'number number number'
-            'number number number'
-            'number number number'
-            'zero zero dot';
+		p,
+		button {
+			font-size: 3rem;
+		}
 
-            .number-btn {
-                background-color: rgb(232, 232, 232);
-            }
+		.display-container {
+			grid-area: display;
+			display: flex;
+			flex-direction: row;
+			align-items: flex-end;
+			justify-content: flex-end;
+			padding: 0.3rem 1rem;
+			background-color: rgb(80, 80, 80);
 
-            &>:nth-child(10) {
-                grid-area: zero;
-            }
-        }
+			.display {
+				font-size: 4rem;
+				color: rgb(230, 230, 230);
+			}
+		}
 
-        .misc-btns-container {
-            grid-area: misc;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: 1fr;
+		.number-btns-container {
+			grid-area: numbers;
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			grid-template-rows: repeat(4, 1fr);
+			grid-template-areas: 'number number number' 'number number number' 'number number number' 'zero zero dot';
 
-            .misc-btn {
-                background-color: rgb(218, 218, 218);
-            }
-        }
-        
-        .operator-btns-container {
-            grid-area: operators;
-            display: grid;
+			.number-btn {
+				background-color: rgb(232, 232, 232);
+			}
 
-            .operator-btn {
-                background-color: rgb(255, 153, 64);
-                color: white;
-            }
-        }
-        
-    }
+			& > :nth-child(10) {
+				grid-area: zero;
+			}
+		}
+
+		.misc-btns-container {
+			grid-area: misc;
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			grid-template-rows: 1fr;
+
+			.misc-btn {
+				background-color: rgb(218, 218, 218);
+			}
+		}
+
+		.operator-btns-container {
+			grid-area: operators;
+			display: grid;
+
+			.operator-btn {
+				background-color: rgb(255, 153, 64);
+				color: white;
+			}
+		}
+	}
 }

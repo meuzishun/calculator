@@ -16,7 +16,8 @@ body .container {
   grid-template-areas: 'display display display display' 'misc misc misc operators' 'numbers numbers numbers operators' 'numbers numbers numbers operators' 'numbers numbers numbers operators' 'numbers numbers numbers operators';
 }
 
-body .container p, body .container button {
+body .container p,
+body .container button {
   font-size: 3rem;
 }
 
