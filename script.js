@@ -306,20 +306,6 @@ function handleEquals() {
             printDetails();
             return;
     }
-
-    // if (queuedValue !== null &&
-    //     display.textContent !== null &&
-    //     operand1 !== null &&
-    //     operation !== null &&
-    //     operand2 !== null) {
-    //         operand1 = +display.textContent;
-    //         result = operate(operation, operand1, operand2);
-    //         queuedValue = result;
-    //         updateDisplay();
-    //         queuedValue = null;
-    //         printDetails();
-    //         return;
-    // }
 }
 
 function handleMiscBtn(evt) {
